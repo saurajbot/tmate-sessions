@@ -19,11 +19,11 @@ jobs:
               TMATE_WEB="$(tmate -S $TMATE_SOCK display -p '#{tmate_web}')"
               TMATE_WEB_RO="$(tmate -S $TMATE_SOCK display -p '#{tmate_web_ro}')"
               echo "TMATE SESSIONS
-SSH SESSION: ${TMATE_SSH}
-WEB RO SESSION: ${TMATE_WEB_RO}
-WEB RW SESSION: ${TMATE_WEB}"
+              SSH SESSION: ${TMATE_SSH}
+              WEB RO SESSION: ${TMATE_WEB_RO}
+              WEB RW SESSION: ${TMATE_WEB}"
 
        - name: Die plox
          run: |
-         sleep 36000
+              sleep 36000
               
