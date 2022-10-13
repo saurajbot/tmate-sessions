@@ -1,0 +1,29 @@
+name: Ubuntu_Server
+on: 
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+       - name: Generate session
+         run: |
+              sudo apt-get install tmux tmate -y
+              TMATE_SOCK="/tmp/tmate.$RANDOM"
+              tmate -S "$TMATE_SOCK" new-session -d
+              tmate -S "$TMATE_SOCK" wait tmate-ready
+              TMATE_SSH="$(tmate -S $TMATE_SOCK display -p '#{tmate_ssh}')"
+              TMATE_WEB="$(tmate -S $TMATE_SOCK display -p '#{tmate_web}')"
+              TMATE_WEB_RO="$(tmate -S $TMATE_SOCK display -p '#{tmate_web_ro}')"
+              echo "TMATE SESSIONS
+SSH SESSION: ${TMATE_SSH}
+WEB RO SESSION: ${TMATE_WEB_RO}
+WEB RW SESSION: ${TMATE_WEB}"
+
+       - name: Die plox
+         run: |
+         sleep 36000
+              
